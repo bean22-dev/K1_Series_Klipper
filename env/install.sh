@@ -31,7 +31,7 @@ fi
 echo "Current user: ${CURRENT_USER}"
 echo "User home directory: ${CURRENT_HOME}"
 
-mkdir -p \
+sudo -u "${CURRENT_USER}" mkdir -p \
   "${PRINTER_DATA_DIR}" \
   "${PRINTER_DATA_DIR}/certs" \
   "${PRINTER_DATA_DIR}/comms" \
@@ -43,7 +43,7 @@ mkdir -p \
   "${PRINTER_DATA_DIR}/systemd"
 
 echo "Created printer_data directory"
-sudo chmod -R a+rwX "${PRINTER_DATA_DIR}"
+chmod -R 777 "${PRINTER_DATA_DIR}"
 
 TIMESTAMP="$(date +%Y%m%d_%H%M%S)"
 
@@ -67,12 +67,12 @@ else
   backup_if_exists "${CONFIG_DIR}/sensorless.cfg" "sensorless_bak${TIMESTAMP}.cfg"
   backup_if_exists "${CONFIG_DIR}/printer.cfg" "printer_bak${TIMESTAMP}.cfg"
 
-  cp "${SOURCE_CONFIG_DIR}/gcode_macro.cfg" "${CONFIG_DIR}/gcode_macro.cfg"
-  cp "${SOURCE_CONFIG_DIR}/printer_params.cfg" "${CONFIG_DIR}/printer_params.cfg"
-  cp "${SOURCE_CONFIG_DIR}/sensorless.cfg" "${CONFIG_DIR}/sensorless.cfg"
-  cp "${SOURCE_CONFIG_DIR}/printer.cfg" "${CONFIG_DIR}/printer.cfg"
+  sudo -u "${CURRENT_USER}" cp "${SOURCE_CONFIG_DIR}/gcode_macro.cfg" "${CONFIG_DIR}/gcode_macro.cfg"
+  sudo -u "${CURRENT_USER}" cp "${SOURCE_CONFIG_DIR}/printer_params.cfg" "${CONFIG_DIR}/printer_params.cfg"
+  sudo -u "${CURRENT_USER}" cp "${SOURCE_CONFIG_DIR}/sensorless.cfg" "${CONFIG_DIR}/sensorless.cfg"
+  sudo -u "${CURRENT_USER}" cp "${SOURCE_CONFIG_DIR}/printer.cfg" "${CONFIG_DIR}/printer.cfg"
 
-  echo "Copied configuration files into ${CONFIG_DIR}"
+  echo "Copy configuration files into ${CONFIG_DIR}"
 fi
 
 echo "Updating package index..."
@@ -120,6 +120,7 @@ if [ ! -f "${DATA_ZIP_SRC}" ]; then
   echo "Error: archive was not found: ${DATA_ZIP_SRC}" >&2
   exit 1
 fi
+
 
 if [ ! -d "/usr/data" ]; then
   echo "Creating /usr/data directory ..."

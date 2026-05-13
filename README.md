@@ -21,47 +21,47 @@ Place the SD card into the USB adapter, and then plug the adapter into your comp
 * **Step 2:** \
 Start the image burning tool to prepare for writing the system image.
 <p align="center">
-  <img src="env/image/image_software.png" width="320" height="240">
+  <img src="env/image/image_software.png" width="420" height="280">
 </p>
 
 * **Step 3:** 
 <p align="center">
-  <img src="env/image/image_device.png" width="320" height="240">
+  <img src="env/image/image_device.png" width="420" height="280">
 </p>
 
 * **Step 4:** 
 <p align="center">
-  <img src="env/image/image_system.png" width="320" height="240">
-  <img src="env/image/image_custom.png" width="320" height="240">
-  <img src="env/image/image_downloaded.png" width="320" height="240">
+  <img src="env/image/image_system.png" width="420" height="280">
+  <img src="env/image/image_custom.png" width="420" height="280">
+  <img src="env/image/image_downloaded.png" width="420" height="280">
 </p>
 
 * **Step 5:** 
 <p align="center">
-  <img src="env/image/image_sd.png" width="320" height="240">
+  <img src="env/image/image_sd.png" width="420" height="280">
 </p>
 
 
 * **Step 6:** \
 Click the Next button, then select Edit Settings.
 <p align="center">
-  <img src="env/image/image_next.png" width="320" height="240">
+  <img src="env/image/image_next.png" width="420" height="280">
 </p>
 
 * **Step 7:** \
 Configure the information in the General, Services, and Optional Services tabs, then click Save.
 <p align="center">
-  <img src="env/image/image_general.png" width="320" height="320">
-  <img src="env/image/image_service.png" width="320" height="320">
-  <img src="env/image/image_option.png" width="320" height="320">
+  <img src="env/image/image_general.png" width="420" height="420">
+  <img src="env/image/image_service.png" width="420" height="420">
+  <img src="env/image/image_option.png" width="420" height="420">
 </p>
 
 
 * **Step 7:** \
 Click the YES button.
 <p align="center">
-  <img src="env/image/image_yes.png" width="320" height="240">
-  <img src="env/image/image_yes1.png" width="320" height="240">
+  <img src="env/image/image_yes.png" width="420" height="280">
+  <img src="env/image/image_yes1.png" width="420" height="280">
 </p>
 
 * **Step 8:** \
@@ -97,32 +97,28 @@ cd ~ && git clone https://github.com/bean22-dev/K1_Series_Klipper.git
 * **Step 2:** \
 Use the following command to install klipper automatically.
 ```shell
-cd ~/K1_Series_Klipper/env && chmod +x install.sh && sudo sh install.sh
+cd ~/K1_Series_Klipper/env && sed -i 's/\r$//' ~/K1_Series_Klipper/env/install.sh && chmod +x install.sh && sudo sh install.sh
 ```
 
-## Moonrake
+## Moonrake，Mainsail，KlipperScreen，Crowsnest
 * **Step 1:** \
-run kiauh
+Start kiauh
 ```shell
 cd ~ && ./kiauh/kiauh.sh
 ```
 
 * **Step 2:** \
-Select Moonraker under the Install menu.
+After entering the installation menu, select the application you wish to install.
 
+<p align="center">
+  <img src="env/image/kiauh.png" width="420" height="420">
+</p>
 
-## Mainsail
-run kiauh and Select Mainsail under the Install menu.
-
-## KlipperScreen
-run kiauh and Select KlipperScreen under the Install menu.
-
-## Crowsnest
-run kiauh and Select Crowsnest under the Install menu.
 
 # MCU fireware
 ## Catalyst.K
 ### config with no bootloader
+Run the firmware configuration tool using the following command.
 ```shell
 cd ~/K1_Series_Klipper && make menuconfig
 ```
@@ -149,6 +145,7 @@ you will see "File downloaded successfully".
 
 ## Catalyst.K ToolHead
   ### config with no bootloader
+Run the firmware configuration tool using the following command.
 ```shell
 cd ~/K1_Series_Klipper && make menuconfig
 ```
@@ -183,11 +180,12 @@ cd ~/K1_Series_Klipper && make menuconfig
   <img src="env/image/bed_other.png" width="560" height="160">
   <img src="env/image/bed_mcu.png" width="560" height="80">
 </p>
+After saving the configuration, execute the `make` command to compile the firmware.
 
   ### bootloader mode
   Unplug and reconnect the power terminal.
   <p align="center">
-  <img src="env/image/bed_poweron.png" width="320" height="320">
+  <img src="env/image/bed_poweron.png" width="420" height="420">
 </p>
 
   ### flash fireware
